@@ -101,18 +101,18 @@ Bem, isso é BIG DATA e um problema de grafos chato de resolver, logo tive que t
 
 3. - Existem duas formas de clusterizacao de endereço no CÓDIGO. Uma é através da verificação de endereços com o mesmo input DENTRO do banco de dados e a outra é a verificação direto na MEMÓRIA, o que eu chamo de pré-clusterização antes de enviar as informações pro banco de dados
 
-4. - Colocando aproximadamente 100 blocos por requisição o servidor ocupou até 6 GB de RAM. Anteriormente baixava apenas 1 bloco por vez. Agora são 100 blocos por vez (ou configurável ). Atualmente 100 blocos representa 60 MB por bloco processado
+4. - Colocando aproximadamente 100 blocos por requisição o servidor ocupou até 6 GB de RAM. Anteriormente baixava apenas 1 bloco por vez. Agora são 100 blocos por vez (ou configurável $totalBlock). Atualmente 100 blocos da blockchain representa 60 MB por bloco processado e gasto na memória RAM. 
 
-5. - Todas array declaradas ao longo do código estão sendo limpas logo após o uso pra economizar a RAM liberando espaço.
+5. - Todas arrays declaradas ao longo do código estão sendo limpas logo após o uso, pra economizar a RAM liberando espaço, obviamente.
 
-6. -  As requisições na blockchain.info são feitas em múltiplos threads. Se você não tiver uma API Key ficará limitado em 1 requisição por segundo, aconselho fazer o pedido de uma API pra eles.
+6. -  As requisições na blockchain.info são feitas em múltiplos threads. Se você não tiver uma API Key do serviço deles ficará limitado em 1 requisição por segundo, portanto aconselho fazer o pedido de uma API pra eles.
 
-7. -  Quando fiz a leitura dos inputs no meu full node notei a demora em processar eles. Por isso estou usando a API da Blockchain.info. Entendeu? Eles já retornam dos blocos com todas transações e seus respectivos inputs addresses. 
+7. -  Quando fiz a leitura dos inputs no meu fullnode notei a demora em processar eles. Por isso estou usando a API da Blockchain.info. Entendeu? Eles já retornam dos blocos com todas transações e seus respectivos inputs addresses. 
 
 
-8. - Segundo meus testes com conexão de 1 GBPS uplink, HD normal (não-ssd) adicionava aproximadamente 1 bloco por segundo no banco de dados. Esse valor tende a aumentar conforme número de índices no banco de dados, mas acredito que em 7 dias com essas especificações dá pra processar toda blockchain no estágio que estamos hoje (580 mil blocos). O que é um tempo muito bom. O NEO4J por exemplo leva meses, e olha que é um banco dedicado pra processamento de grafos.
+8. - Segundo meus testes; com conexão de 1 GBPS uplink, HD normal (não-ssd) adicionava aproximadamente 1 bloco por segundo no banco de dados. Esse valor tende a aumentar conforme número de índices dentro da tabela, mas acredito que em 7 dias com essas especificações dá pra processar toda blockchain no estágio que estamos hoje (580 mil blocos na rede). O que é um tempo muito bom. O NEO4J por exemplo leva meses, e olha que é um banco dedicado pra processamento de grafos.
 
-9. - Apesar da otimização não é aconselhável abrir várias guias do seu browser na tentativa de baixar e indexar os blocos mais rápidos. Não trabalhei dessa forma pensando em concorrência, os dados são encapsulados e enviados para o banco de uma forma que não pensei em concorrência. Por tanto tenha em mente isso.  Apenas uma guia no browser, e apenas um processo do servidor pra indexar os dados (sem multi-tasking)
+9. - Apesar da otimização não é aconselhável abrir várias guias do seu browser na tentativa de baixar e indexar os blocos mais rápidos. Não trabalhei dessa forma pensando em concorrência, os dados são encapsulados e enviados para o banco de uma forma que não pensei em concorrência. Por tanto tenha em mente isso.  "Apenas uma guia no browser", E apenas um processo do servidor pra indexar os dados (sem multi-tasking)
 
 
 
@@ -120,6 +120,12 @@ Bem, isso é BIG DATA e um problema de grafos chato de resolver, logo tive que t
 ### Como os dados ficam armazenados no banco?
 
 Tudo ficará na tabela *addresses_table*.  A coluna wallet do banco de dados é referente ao código único da wallet do endereço. Podem existir mais de um endereço na mesma wallet, isso é a nossa clusterizacao funcionando. Ainda não defini qual wallet id e de qual exchange por exemplo. Mas para definir isso é só pegar um endereço de depósito já movimentado de uma exchange e pesquisar no banco de dados este endereço, o wallet desse endereço é a wallet da respectiva corretora. Agora buscando uma consulta pela wallet você terá todos endereços da corretora. 
+
+
+![](https://i.imgur.com/ZYaSTfM.png)
+
+![](https://i.imgur.com/rvKOVbA.png)
+
 
 **Veja o exemplo abaixo:**
 
