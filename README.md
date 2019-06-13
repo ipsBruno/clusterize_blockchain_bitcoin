@@ -171,7 +171,8 @@ Uma versão melhorada do mesmo algoritmo poderia ser feita em C++. O desempenho 
 
 ### Contato
 
-Meu contato é email@brunodasilva.com
+Meu contato é email@brunodasilva.com.
+
 Tenho alguns problemas ao escrever textos, se achar alguma frase sem sentido ou tenha ficado confuso entre em contato comigo que posso explicar melhor.
 
 Estou buscando patrocínios pra manter uma ferramenta similar a **chainalysis.com** on-line, gratuita e aberta ao público. Pra isso precisarei gastar um valor alto em servidores, portanto se quiser me ajudar nessa empreitada aceito doações em:
