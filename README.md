@@ -166,7 +166,7 @@ Uma versão melhorada do mesmo algoritmo poderia ser feita em C++. O desempenho 
   -  Rodrigo Souza (Bitcambio) Me ajudou com algumas dicas nos bancos de
    dados que deveriam ser usados como opção
    
-   - Leandro Trindade (Access) Me auxiliou numa função alternativa pra
+  - Leandro Trindade (Access) Me auxiliou numa função alternativa pra
    clusterizar os endereços dentro da memória
 
 ### Contato
@@ -181,5 +181,15 @@ Estou buscando patrocínios pra manter uma ferramenta similar a **chainalysis.co
 
 
 **1Kgijykax9RHuuaR84vi4W5eGKLc85DX4V**
+
+
+### Links Legais
+http://randomwalker.info/teaching/spring-2014-privacy-technologies/btctrackr.pdf
+https://github.com/Iwontbecreative/Bitcoin-adress-clustering
+https://bitfury.com/content/downloads/clustering_whitepaper.pdf
+https://github.com/in3rsha/bitcoin-to-neo4j
+https://medium.com/tokenanalyst/how-to-load-bitcoin-into-neo4j-in-one-day-b555219ed9d2
+https://neo4j.com/blog/import-bitcoin-blockchain-neo4j/
+https://www.walletexplorer.com
 
 
