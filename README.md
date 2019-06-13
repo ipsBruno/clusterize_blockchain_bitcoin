@@ -51,27 +51,27 @@ https://github.com/ipsBruno/tracking-wallet-bitcoin
 
 A clusterizacao de endereços se mostra extremamente eficaz pra rastrear Bitcoins e marcar eles. Podendo desde consultar a solvência de uma exchange, até rastrear Bitcoins roubados, combater terrorismo, e crimes cibernéticos como pedofilia, etc
 
- Existem duas formas de clusterizacao de endereço no código. Uma é através da verificação de endereços com o mesmo input dentro das transações e a outra é através do change address. Nesse código estamos usando inputs (método mais confiável) pra validar as wallets
+Existem duas formas de clusterizacao de endereço no Bitcoin. Uma é através da verificação de endereços com o mesmo input dentro das transações e a outra é através do change address. Nesse código estamos usando inputs (método mais confiável) pra validar as wallets
  
 **Sobre**
 
-Meu objetivo foi otimizar mais o código pra conseguir anexar todos blocos da blockchain dentro do banco de dados (mysql), uma vez que o código antigo (disponível aqui no github)  levava mais de 10 minutos por bloco o que significaria que nunca conseguiríamos nos manter atualizado perante a blockchain, afinal a cada 10 minutos é emitido um novo bloco na rede do Bitcoin
+Meu objetivo foi otimizar mais o código pra conseguir anexar todos blocos da blockchain dentro do banco de dados (mysql), uma vez que o meu código antigo (disponível aqui no github)  levava mais de 10 minutos por bloco o que significaria que nunca conseguiríamos nos manter atualizado perante a blockchain, afinal a cada 10 minutos é emitido um novo bloco na rede do Bitcoin
 
 
-Tentei refatorar o código usando Neo4J (banco de dados de grafos indicado pra isso) pra montar essas clusterizações de forma mais correta possível, mas levou meses pra indexar toda blockchain no banco e ainda ficava demorada as querys de clusterizacao. Resumindo: Clusterizar os endereços de Bitcoin é um problema de grafos de complexabilidade algorítmica alta. Cada milhares de node (endereços) precisam ser ligados a outro node e/ou vários nodes (milhares de outros endereços)
+Tentei refatorar o código usando Neo4J (banco de dados de grafos indicado pra isso) pra montar essas clusterizações de forma mais correta possível, mas levou meses pra indexar toda blockchain no banco e ainda ficava demorada as querys de clusterizacao. Resumindo: Clusterizar os endereços de Bitcoin é um problema de grafos de complexabilidade algorítmica alta. Cada milhares de nodes (endereços) precisam ser ligados a outro node e/ou vários nodes (milhares de outros endereços)
 
-Não estou utilizando change address nas clusterizacoes pela dificuldade/lentidão em verificação esses endereços. Apesar de tudo é um ponto que pretendo adicionar no futuro.
+Não estou utilizando change address nas clusterizacoes pela dificuldade/lentidão em verificação desses endereços. Apesar de tudo é um ponto que pretendo adicionar no futuro.
 
 
 ![Reactor, Blockchain Analysis from Chainalysis](https://www.chainalysis.com/img/reactor-2.png)
 
- Na imagem abaixo há um gráfico com um endereço maior em roxo, nesse case os fundos de um usuário roubado haviam passado por alguns mixer até chegar neste endereço maior. A ideia da ferramenta é mostrar qual probabilidade de um endereço roubado ter chegado até outro endereço roubado
+ Na imagem abaixo há um gráfico com um endereço maior em roxo, nesse 'case' os fundos de um usuário roubado haviam passado por alguns mixer até chegar neste endereço maior. A ideia da ferramenta é mostrar qual probabilidade de um endereço roubado ter chegado até outro endereço final
 
 ![](https://i.imgur.com/0lgTFyu.png)
 
 Um adendo importante, com Neo4J dá pra cruzar dois endereços e verificar também se eles tem alguma ligação em comum (através da análise grafos [outputs em séries])
 
-Aconselho muito o uso dessa ferramenta em conjunto este aqui:
+Por isso aconselho muito o uso dessa ferramenta em conjunto este aqui:
 https://github.com/in3rsha/bitcoin-to-neo4j/blob/master/docs/cypher.md
 
 ![](https://github.com/in3rsha/bitcoin-to-neo4j/raw/master/docs/images/path_output.png)
@@ -83,7 +83,7 @@ MATCH path=shortestPath( (start)-[:in|:out*]-(end) )
 RETURN path
 ```
 
-Assim dá pra fazer um estudo muito mais aprofundado na blockchain. 
+Note que assim dá pra fazer um estudo muito mais aprofundado na blockchain. 
 
 
 
